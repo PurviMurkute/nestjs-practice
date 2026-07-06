@@ -23,7 +23,9 @@ export class RolesGuard implements CanActivate {
     }
     const { user } = context.switchToHttp().getRequest<AuthenticatedRequest>();
     if (!requiredRoles.includes(user.role)) {
-      throw new ForbiddenException('Only admins can create a course');
+      throw new ForbiddenException(
+        'Only admins can create, update and delete a course',
+      );
     }
 
     return true;
