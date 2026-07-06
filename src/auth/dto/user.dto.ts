@@ -1,4 +1,5 @@
 import { IsEmail, IsString } from 'class-validator';
+import { Request } from 'express';
 
 export class RegisterUserDto {
   @IsString()
@@ -17,4 +18,14 @@ export class LoginUserDto {
 
   @IsString()
   password!: string;
+}
+
+export interface JwtPayload {
+  id: string;
+  email: string;
+  role: string;
+}
+
+export interface AuthenticatedRequest extends Request {
+  user: JwtPayload;
 }

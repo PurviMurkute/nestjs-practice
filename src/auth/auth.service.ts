@@ -72,4 +72,12 @@ export class AuthService {
       },
     };
   }
+
+  async getProfile(email: string) {
+    const user = await this.userService.findByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
 }
