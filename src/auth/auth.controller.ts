@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto, RegisterUserDto } from './dto/user.dto';
-import { AuthGuard } from './auth.guards';
 import type { AuthenticatedRequest } from './dto/user.dto';
+import { AuthGuard } from 'src/common/guards/auth.guards';
 
 @Controller('auth')
 export class AuthController {
@@ -27,8 +27,8 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req: AuthenticatedRequest) {
-    const userEmail: string = req.user.email;
+    const userId: string = req.user.id;
 
-    return this.authService.getProfile(userEmail);
+    return this.authService.getProfile(userId);
   }
 }

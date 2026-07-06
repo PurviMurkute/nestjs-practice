@@ -73,8 +73,8 @@ export class AuthService {
     };
   }
 
-  async getProfile(email: string) {
-    const user = await this.userService.findByEmail(email);
+  async getProfile(_id: string) {
+    const user = await this.userService.findById(_id);
     if (!user) {
       throw new NotFoundException('User not found');
     }
